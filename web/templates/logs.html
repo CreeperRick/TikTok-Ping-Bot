@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Activity Logs{% endblock %}
+
+{% block content %}
+<h2>Activity Logs</h2>
+<p class="text-muted">Recent detected videos from monitored accounts.</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Video ID</th>
+            <th>Username</th>
+            <th>Detected At</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.tiktok_video_id }}</td>
+            <td>@{{ log.username }}</td>
+            <td>{{ log.detected_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td><a href="{{ log.video_url }}" target="_blank">Watch</a></td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4" class="text-muted">No activity yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

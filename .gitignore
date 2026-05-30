@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+tiktok_bot.db
+*.log
+venv/
+.vscode/
+.idea/

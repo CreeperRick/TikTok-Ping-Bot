@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}System Status{% endblock %}
+
+{% block content %}
+<h2>System Status</h2>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Monitored Accounts</h5>
+                <h2>{{ total_accounts }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Videos Detected</h5>
+                <h2>{{ total_videos }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Active Guilds</h5>
+                <h2>{{ total_guilds }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

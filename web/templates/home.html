@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - TikTok Bot{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}!</h2>
+<p class="text-muted">Select a server to manage TikTok subscriptions.</p>
+
+<div class="row mt-4">
+    {% for guild in guilds %}
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ guild.name }}</h5>
+                <p class="card-text">Server ID: {{ guild.id }}</p>
+                <a href="/dashboard/guild/{{ guild.id }}" class="btn btn-primary">Manage</a>
+                <a href="/dashboard/activity/{{ guild.id }}" class="btn btn-secondary">Activity Logs</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning">You are not an administrator of any Discord server where the bot is present.</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

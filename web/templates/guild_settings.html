@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Guild Settings{% endblock %}
+
+{% block content %}
+<h2>Server Settings</h2>
+<p class="text-muted">Manage TikTok subscriptions for this server.</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>➕ Add TikTok Account</h5>
+            </div>
+            <div class="card-body">
+                <form id="addForm">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="e.g., tiktok" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5>📋 Monitored Accounts</h5>
+            </div>
+            <div class="card-body">
+                <ul id="accountsList" class="list-group">
+                    {% for acc in subscriptions %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @{{ acc.username }}
+                        <button class="btn btn-sm btn-danger" onclick="removeAccount('{{ acc.username }}')">Remove</button>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item text-muted">No accounts monitored yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>⚙️ Notification Channel</h5>
+            </div>
+            <div class="card-body">
+                <p>Current channel: <code>{% if notification_channel %}#{{ notification_channel }}{% else %}Not set{% endif %}</code></p>
+                <p>Use Discord command <code>/setchannel #channel</code> to change.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('addForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const res = await fetch(`/api/accounts?guild_id={{ guild_id }}`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username})
+        });
+        if (res.ok) {
+            location.reload();
+        } else {
+            alert('Failed to add account');
+        }
+    });
+    
+    async function removeAccount(username) {
+        if (confirm(`Remove @${username}?`)) {
+            const res = await fetch(`/api/accounts/${username}?guild_id={{ guild_id }}`, {method: 'DELETE'});
+            if (res.ok) location.reload();
+            else alert('Failed to remove');
+        }
+    }
+</script>
+{% endblock %}
