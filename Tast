@@ -1,6 +1,1 @@
-grep -i watchfiles requirements.txt
-grep -i uvicorn requirements.txt
-pip install --upgrade pip setuptools wheel
-pip cache purge
-pip install -r requirements.txt
-cpython-313-aarch64-linux-android
+pkg install python-dev
