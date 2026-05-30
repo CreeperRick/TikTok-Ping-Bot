@@ -1,0 +1,24 @@
+error: subprocess-exited-with-error
+
+  × installing build dependencies for watchfiles did not run successfully.
+  │ exit code: 1                                             ╰─> [31 lines of output]
+      Collecting maturin<2,>=0.14.16
+        Using cached maturin-1.13.3.tar.gz (357 kB)
+        Installing build dependencies: started                     Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started               Getting requirements to build wheel: finished with status 'done'
+        Installing backend dependencies: started                   Installing backend dependencies: finished with status 'done'
+        Preparing metadata (pyproject.toml): started               Preparing metadata (pyproject.toml): finished with status 'error'                                                     error: subprocess-exited-with-error
+        × Preparing metadata (pyproject.toml) did not run successfully.
+        │ exit code: 1                                             ╰─> [6 lines of output]
+            /data/data/com.termux/files/usr/tmp/pip-build-env-_ekut1kj/overlay/lib/python3.13/site-packages/setuptools/_vendor/wheel/bdist_wheel.py:4: FutureWarning: The 'wheel' package is no longer the canonical location of the 'bdist_wheel' command, and will be removed in a future release. Please update to setuptools v70.1 or later which contains an integrated version of this command.                                      warn(                                                    Python reports SOABI: cpython-313-aarch64-linux-android
+            Computed rustc target triple: aarch64-unknown-linux-android                                                           Target triple not supported by rustup: aarch64-unknown-linux-android
+            Rust not found, installing into a temporary directory
+            [end of output]
+        note: This error originates from a subprocess, and is likely not a problem with pip.
+      error: metadata-generation-failed
+      × Encountered error while generating package metadata.
+      ╰─> maturin
+      note: This is an issue with the package mentioned above, not pip.                                                     hint: See above for details.
+      [end of output]
+  note: This error originates from a subprocess, and is likely not a problem with pip.                                ERROR: Failed to build 'watchfiles' when installing build dependencies for watchfiles
+(venv) ~/TikTok-Ping-Bot $
