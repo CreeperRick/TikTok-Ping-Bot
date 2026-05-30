@@ -62,7 +62,7 @@ Fill in your Discord and application credentials.
 ### 7. Make the start script executable
 
 ```bash
-chmod +x start.sh
+chmod +x main.sh
 ```
 
 ### 8. Run the bot
