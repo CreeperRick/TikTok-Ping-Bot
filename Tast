@@ -1,19 +1,4 @@
-# Update and install build essentials
-pkg update -y && pkg upgrade -y
-pkg install python python-dev clang rust binutils libffi libffi-dev openssl openssl-dev make cmake libcrypt libcrypt-dev -y
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate
-
-# Upgrade pip
-pip install --upgrade pip
-
-# Install aiohttp via Termux package manager (avoids compilation)
-pkg install python-aiohttp
-
-# Install remaining packages (they will reuse the system aiohttp)
-pip install --prefer-binary discord.py fastapi uvicorn sqlalchemy aiosqlite apscheduler jinja2 python-dotenv itsdangerous python-multipart aiofiles
-
-# Verify everything works
-python -c "import aiohttp, discord, fastapi; print('Success')"
+pkg list-all | grep aiohttp
+export CFLAGS="-O2 -pipe -march=native -fstack-protector-strong"
+export LDFLAGS="-L$PREFIX/lib"
+pip install aiohttp==3.8.6   # Older version with more stable compilation
