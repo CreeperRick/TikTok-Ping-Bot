@@ -45,7 +45,9 @@ source venv/bin/activate
 ### 5. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pkg update -y
+pkg install clang python libffi libffi-dev openssl openssl-dev rust binutils -y
+pip install --prefer-binary -r requirements.txt
 ```
 
 ### 6. Configure environment variables
