@@ -62,13 +62,13 @@ Fill in your Discord and application credentials.
 ### 7. Make the start script executable
 
 ```bash
-chmod +x main.sh
+chmod +x main.py
 ```
 
 ### 8. Run the bot
 
 ```bash
-./main.sh
+./main.py
 ```
 
 The web dashboard will be available at:
