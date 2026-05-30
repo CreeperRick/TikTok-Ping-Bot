@@ -31,7 +31,7 @@ pkg install python git -y
 ### 3. Clone the repository
 
 ```bash
-git clone [https://your-repo-url/tiktok-discord-bot.git](https://github.com/CreeperRick/TikTok-Ping-Bot/)
+git clone https://github.com/CreeperRick/TikTok-Ping-Bot
 cd TikTok-Ping-Bot
 ```
 
