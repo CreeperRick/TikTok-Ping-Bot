@@ -68,7 +68,7 @@ chmod +x start.sh
 ### 8. Run the bot
 
 ```bash
-./start.sh
+./main.sh
 ```
 
 The web dashboard will be available at:
