@@ -47,7 +47,8 @@ source venv/bin/activate
 ```bash
 pkg update -y
 pkg install clang python libffi libffi-dev openssl openssl-dev rust binutils -y
-pip install --prefer-binary -r requirements.txt
+pip install --only-binary :all: pydantic pydantic-core
+pip install -r requirements.txt
 ```
 
 ### 6. Configure environment variables
