@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 Main entry point: runs both Discord bot and FastAPI web server concurrently.
 """
@@ -7,8 +8,13 @@ import logging
 import sys
 from pathlib import Path
 
+from flask import Flask, request
+import requests
+
 import uvicorn
 from dotenv import load_dotenv
+
+app = Flask(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -59,6 +65,7 @@ async def main():
     )
 
 if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
