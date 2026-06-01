@@ -1,13 +1,25 @@
-from .database import async_session, engine, Base, init_db
-from .models import Guild, TikTokAccount, GuildTikTokSubscription, VideoHistory
+from database.database import (
+    engine,
+    async_session,
+    AsyncSessionLocal,
+    Base,
+    Guild,
+    TikTokAccount,
+    GuildTikTokSubscription,
+    VideoHistory,
+    init_db,
+    get_session,
+)
 
 __all__ = [
-    "async_session",
     "engine",
+    "async_session",
+    "AsyncSessionLocal",
     "Base",
-    "init_db",
     "Guild",
     "TikTokAccount",
     "GuildTikTokSubscription",
-    "VideoHistory"
+    "VideoHistory",
+    "init_db",
+    "get_session",
 ]

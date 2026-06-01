@@ -3,36 +3,44 @@
 {% block title %}Guild Settings{% endblock %}
 
 {% block content %}
-<h2>Server Settings</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard/home">Dashboard</a></li>
+        <li class="breadcrumb-item active">Server Settings</li>
+    </ol>
+</nav>
+
+<h2>⚙️ Server Settings</h2>
 <p class="text-muted">Manage TikTok subscriptions for this server.</p>
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5>➕ Add TikTok Account</h5>
-            </div>
+    <div class="col-md-7">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header"><h5 class="mb-0">➕ Add TikTok Account</h5></div>
             <div class="card-body">
-                <form id="addForm">
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        <input type="text" id="username" class="form-control" placeholder="e.g., tiktok" required>
-                    </div>
-                    <button type="submit" class="btn btn-success">Add</button>
-                </form>
+                <div class="input-group">
+                    <span class="input-group-text">@</span>
+                    <input type="text" id="username" class="form-control" placeholder="tiktokusername">
+                    <button class="btn btn-success" onclick="addAccount()">Add</button>
+                </div>
+                <div id="addError" class="text-danger mt-2 small d-none"></div>
             </div>
         </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <h5>📋 Monitored Accounts</h5>
-            </div>
-            <div class="card-body">
-                <ul id="accountsList" class="list-group">
+
+        <div class="card shadow-sm">
+            <div class="card-header"><h5 class="mb-0">📋 Monitored Accounts</h5></div>
+            <div class="card-body p-0">
+                <ul id="accountsList" class="list-group list-group-flush">
                     {% for acc in subscriptions %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        @{{ acc.username }}
-                        <button class="btn btn-sm btn-danger" onclick="removeAccount('{{ acc.username }}')">Remove</button>
+                        <span>@{{ acc.username }}
+                            {% if acc.enabled %}
+                            <span class="badge bg-success ms-1">Active</span>
+                            {% else %}
+                            <span class="badge bg-secondary ms-1">Disabled</span>
+                            {% endif %}
+                        </span>
+                        <button class="btn btn-sm btn-outline-danger" onclick="removeAccount('{{ acc.username }}')">Remove</button>
                     </li>
                     {% else %}
                     <li class="list-group-item text-muted">No accounts monitored yet.</li>
@@ -41,42 +49,60 @@
             </div>
         </div>
     </div>
-    
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h5>⚙️ Notification Channel</h5>
-            </div>
+
+    <div class="col-md-5">
+        <div class="card shadow-sm mb-3">
+            <div class="card-header"><h5 class="mb-0">🔔 Notification Channel</h5></div>
             <div class="card-body">
-                <p>Current channel: <code>{% if notification_channel %}#{{ notification_channel }}{% else %}Not set{% endif %}</code></p>
-                <p>Use Discord command <code>/setchannel #channel</code> to change.</p>
+                <p>Current channel:
+                    <code>{% if notification_channel %}#{{ notification_channel }}{% else %}Not set{% endif %}</code>
+                </p>
+                <p class="text-muted small">Use the Discord slash command <code>/setchannel #channel</code> to change the notification channel.</p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header"><h5 class="mb-0">🔗 Quick Links</h5></div>
+            <div class="card-body">
+                <a href="/dashboard/activity/{{ guild_id }}" class="btn btn-outline-secondary w-100 mb-2">📋 View Activity Logs</a>
+                <a href="/dashboard/home" class="btn btn-outline-primary w-100">← Back to Dashboard</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    document.getElementById('addForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const username = document.getElementById('username').value;
+    async function addAccount() {
+        const username = document.getElementById('username').value.trim();
+        const errBox = document.getElementById('addError');
+        errBox.classList.add('d-none');
+
+        if (!username) return;
+
         const res = await fetch(`/api/accounts?guild_id={{ guild_id }}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username})
         });
+
         if (res.ok) {
             location.reload();
         } else {
-            alert('Failed to add account');
-        }
-    });
-    
-    async function removeAccount(username) {
-        if (confirm(`Remove @${username}?`)) {
-            const res = await fetch(`/api/accounts/${username}?guild_id={{ guild_id }}`, {method: 'DELETE'});
-            if (res.ok) location.reload();
-            else alert('Failed to remove');
+            const data = await res.json();
+            errBox.textContent = data.detail || 'Failed to add account.';
+            errBox.classList.remove('d-none');
         }
     }
+
+    async function removeAccount(username) {
+        if (!confirm(`Remove @${username} from monitoring?`)) return;
+        const res = await fetch(`/api/accounts/${username}?guild_id={{ guild_id }}`, {method: 'DELETE'});
+        if (res.ok) location.reload();
+        else alert('Failed to remove account.');
+    }
+
+    document.getElementById('username').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addAccount();
+    });
 </script>
 {% endblock %}

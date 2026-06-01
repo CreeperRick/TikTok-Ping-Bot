@@ -2,12 +2,18 @@ body {
     background-color: #f8f9fa;
 }
 
-.card {
-    border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.btn-primary {
-    background-color: #5865F2;
-    border-color: #5865F2;
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: #f1f3f5;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0 !important;
 }

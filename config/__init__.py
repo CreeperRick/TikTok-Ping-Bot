@@ -1,1 +1,3 @@
-# Empty init file
+from config.settings import settings
+
+__all__ = ["settings"]

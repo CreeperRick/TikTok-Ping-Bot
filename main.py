@@ -1,43 +1,32 @@
 #!/usr/bin/env python3
-
 """
 Main entry point: runs both Discord bot and FastAPI web server concurrently.
 """
 import asyncio
 import logging
 import sys
-from pathlib import Path
-
-from flask import Flask, request
-import requests
-
 import uvicorn
 from dotenv import load_dotenv
 
-app = Flask(__name__)
-
-# Load environment variables
 load_dotenv()
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[logging.StreamHandler(sys.stdout)]
 )
 logger = logging.getLogger("main")
 
-# Import after logging config
 from bot.bot import DiscordBot
 from web.app import app as fastapi_app
 from database.database import init_db
+
 
 async def run_bot():
     """Run Discord bot."""
     bot = DiscordBot()
     await bot.start()
+
 
 async def run_web():
     """Run FastAPI with Uvicorn."""
@@ -51,21 +40,20 @@ async def run_web():
     server = uvicorn.Server(config)
     await server.serve()
 
+
 async def main():
     """Initialize database and start both services concurrently."""
     logger.info("Initializing database...")
     await init_db()
-    
+
     logger.info("Starting Discord bot and Web dashboard...")
-    
-    # Run both concurrently
     await asyncio.gather(
         run_bot(),
         run_web()
     )
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
     try:
         asyncio.run(main())
     except KeyboardInterrupt:

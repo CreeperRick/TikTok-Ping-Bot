@@ -3,24 +3,26 @@
 {% block title %}Dashboard - TikTok Bot{% endblock %}
 
 {% block content %}
-<h2>Welcome, {{ user.username }}!</h2>
-<p class="text-muted">Select a server to manage TikTok subscriptions.</p>
+<h2>Welcome, {{ user.username }}! 👋</h2>
+<p class="text-muted">Select a server below to manage its TikTok subscriptions.</p>
 
 <div class="row mt-4">
     {% for guild in guilds %}
     <div class="col-md-4 mb-3">
-        <div class="card h-100">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
                 <h5 class="card-title">{{ guild.name }}</h5>
-                <p class="card-text">Server ID: {{ guild.id }}</p>
-                <a href="/dashboard/guild/{{ guild.id }}" class="btn btn-primary">Manage</a>
-                <a href="/dashboard/activity/{{ guild.id }}" class="btn btn-secondary">Activity Logs</a>
+                <p class="card-text text-muted small">ID: {{ guild.id }}</p>
+                <a href="/dashboard/guild/{{ guild.id }}" class="btn btn-primary btn-sm me-1">⚙️ Manage</a>
+                <a href="/dashboard/activity/{{ guild.id }}" class="btn btn-outline-secondary btn-sm">📋 Logs</a>
             </div>
         </div>
     </div>
     {% else %}
     <div class="col-12">
-        <div class="alert alert-warning">You are not an administrator of any Discord server where the bot is present.</div>
+        <div class="alert alert-warning">
+            You are not an administrator of any Discord server where the bot is present.
+        </div>
     </div>
     {% endfor %}
 </div>
