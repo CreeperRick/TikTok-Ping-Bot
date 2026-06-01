@@ -1,22 +1,20 @@
-(venv) (/data/data/com.termux/files/ubuntu)root@localhost:~/TikTok-Ping-Bot# python3 main.py 2>&1
-2026-06-01 15:36:13,983 - main - INFO - Initializing database...
-2026-06-01 15:36:14,043 - main - INFO - Starting Discord bot and Web dashboard...
-2026-06-01 15:36:14,044 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
-2026-06-01 15:36:14,044 - discord.client - WARNING - davey is not installed, voice will NOT be supported
-2026-06-01 15:36:14,044 - discord.client - INFO - logging in using static token
-INFO:     Started server process [22868]
+(venv) (/data/data/com.termux/files/ubuntu)root@localhost:~/TikTok-Ping-Bot# ./main.py
+2026-06-01 15:39:53,733 - main - INFO - Initializing database...
+2026-06-01 15:39:53,752 - main - INFO - Starting Discord bot and Web dashboard...
+2026-06-01 15:39:53,753 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-06-01 15:39:53,753 - discord.client - WARNING - davey is not installed, voice will NOT be supported
+2026-06-01 15:39:53,753 - discord.client - INFO - logging in using static token
+INFO:     Started server process [22990]
 INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
-2026-06-01 15:36:16,085 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2026-06-01 15:36:16,103 - apscheduler.scheduler - INFO - Added job "TikTokCommands._check_all_accounts" to job store "default"
-2026-06-01 15:36:16,104 - apscheduler.scheduler - INFO - Scheduler started
-2026-06-01 15:36:16,106 - tiktok_commands - INFO - Background monitoring scheduled every 5 minutes
-2026-06-01 15:36:16,107 - discord_bot - INFO - Loaded tiktok_commands cog
-2026-06-01 15:36:16,359 - discord_bot - INFO - Synced slash commands
-2026-06-01 15:36:17,443 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 419a7b5f7309e309ffe2efb4e925b59e).
-2026-06-01 15:36:19,465 - discord_bot - INFO - Logged in as TikTokPing#5324 (ID: 1510000436776796412)
-INFO:     192.168.1.225:62767 - "GET / HTTP/1.1" 500 Internal Server Error
+INFO:     Application startup complete.                    INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-06-01 15:40:03,472 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-01 15:40:03,475 - apscheduler.scheduler - INFO - Added job "TikTokCommands._check_all_accounts" to job store "default"
+2026-06-01 15:40:03,476 - apscheduler.scheduler - INFO - Scheduler started
+2026-06-01 15:40:03,476 - tiktok_commands - INFO - Background monitoring scheduled every 5 minutes
+2026-06-01 15:40:03,476 - discord_bot - INFO - Loaded tiktok_commands cog                                             2026-06-01 15:40:06,302 - discord_bot - INFO - Synced slash commands
+2026-06-01 15:40:06,973 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 78459f9b7b36af150352c23cc6b5739d).
+2026-06-01 15:40:08,985 - discord_bot - INFO - Logged in as TikTokPing#5324 (ID: 1510000436776796412)
+INFO:     127.0.0.1:44600 - "GET / HTTP/1.1" 500 Internal Server Error
 ERROR:    Exception in ASGI application
 Traceback (most recent call last):
   File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
@@ -88,4 +86,10 @@ Traceback (most recent call last):
     rv = self._mapping[key]
          ~~~~~~~~~~~~~^^^^^
 TypeError: unhashable type: 'dict'
-
+INFO:     127.0.0.1:44602 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [22990]
+2026-06-01 15:40:23,826 - main - INFO - Shutting down...
+(venv) (/data/data/com.termux/files/ubuntu)root@localhost:~/TikTok-Ping-Bot#
