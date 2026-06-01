@@ -5,3 +5,13 @@ async def root(request: Request):
     if user:
         return RedirectResponse(url="/dashboard/home")
     return templates.TemplateResponse(request, "login.html")
+
+
+
+
+grep -rn "TemplateResponse" web/
+
+
+
+templates.TemplateResponse("page.html", {"request": request, ...})
+->         templates.TemplateResponse(request, "page.html", {...})
