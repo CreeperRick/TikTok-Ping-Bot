@@ -1,0 +1,98 @@
+(venv) (/data/data/com.termux/files/ubuntu)root@localhost:~/TikTok-Ping-Bot# ./main.py
+2026-06-01 15:20:18,219 - main - INFO - Initializing database...
+2026-06-01 15:20:18,290 - main - INFO - Starting Discord bot and Web dashboard...                                     2026-06-01 15:20:18,291 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2026-06-01 15:20:18,291 - discord.client - WARNING - davey is not installed, voice will NOT be supported
+2026-06-01 15:20:18,291 - discord.client - INFO - logging in using static token                                       INFO:     Started server process [21276]                   INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)                                               ERROR:    Traceback (most recent call last):
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 962, in _load_from_module_spec                                                    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^                             File "<frozen importlib._bootstrap_external>", line 995, in exec_module                                               File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed                                          File "/root/TikTok-Ping-Bot/bot/cogs/tiktok_commands.py", line 4, in <module>                                           from apscheduler.schedulers.asyncio import AsyncIOScheduler
+ModuleNotFoundError: No module named 'apscheduler'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/TikTok-Ping-Bot/./main.py", line 50, in main
+    await asyncio.gather(
+  File "/root/TikTok-Ping-Bot/./main.py", line 28, in run_bot
+    await bot.start()
+  File "/root/TikTok-Ping-Bot/bot/bot.py", line 38, in start
+    await super().start(settings.DISCORD_TOKEN)
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/client.py", line 850, in start
+    await self.login(token)
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/client.py", line 693, in login
+    await self.setup_hook()
+  File "/root/TikTok-Ping-Bot/bot/bot.py", line 23, in setup_hook
+    await self.load_extension("bot.cogs.tiktok_commands")
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1040, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 965, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'bot.cogs.tiktok_commands' raised an error: ModuleNotFoundError: No module named 'apscheduler'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/starlette/routing.py", line 645, in lifespan
+    await receive()
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/uvicorn/lifespan/on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+Traceback (most recent call last):
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 962, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/root/TikTok-Ping-Bot/bot/cogs/tiktok_commands.py", line 4, in <module>
+    from apscheduler.schedulers.asyncio import AsyncIOScheduler
+ModuleNotFoundError: No module named 'apscheduler'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/TikTok-Ping-Bot/./main.py", line 58, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/TikTok-Ping-Bot/./main.py", line 50, in main
+    await asyncio.gather(
+  File "/root/TikTok-Ping-Bot/./main.py", line 28, in run_bot
+    await bot.start()
+  File "/root/TikTok-Ping-Bot/bot/bot.py", line 38, in start
+    await super().start(settings.DISCORD_TOKEN)
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/client.py", line 850, in start
+    await self.login(token)
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/client.py", line 693, in login
+    await self.setup_hook()
+  File "/root/TikTok-Ping-Bot/bot/bot.py", line 23, in setup_hook
+    await self.load_extension("bot.cogs.tiktok_commands")
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1040, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/root/TikTok-Ping-Bot/venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 965, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'bot.cogs.tiktok_commands' raised an error: ModuleNotFoundError: No module named 'apscheduler'
+2026-06-01 15:20:19,926 - asyncio - ERROR - Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x758b291130>, 81052.005427295)])']
+connector: <aiohttp.connector.TCPConnector object at 0x758bda9d60>
+(venv) (/data/data/com.termux/files/ubuntu)root@localhost:~/TikTok-Ping-Bot#
